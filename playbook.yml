@@ -1,4 +1,4 @@
-- name: Install and run Docker demo
+- name:  Install docker and run basic containers
   hosts: all
   become: true
 
