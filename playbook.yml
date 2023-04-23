@@ -36,7 +36,7 @@
       shell: cp /opt/docker-demo/config.yml /docker/gatus/config.yml
       when: ansible_os_family == 'Debian'
       
-    - name: Run Docker demo
+    - name: Create containers
       command: docker-compose up -d
       args:
         chdir: /opt/docker-demo
