@@ -41,3 +41,9 @@
       args:
         chdir: /opt/docker-demo
       when: ansible_os_family == 'Debian'
+      
+    - name: Remove Docker demo directory
+      file:
+        path: /opt/docker-demo
+        state: absent
+      when: ansible_os_family == 'Debian'
