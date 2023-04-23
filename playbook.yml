@@ -32,9 +32,7 @@
       when: ansible_os_family == 'Debian'
 
     - name: Copy config.yml to /docker/gatus
-      copy:
-        src: /opt/docker-demo/config.yml
-        dest: /docker/gatus/config.yml
+      shell: cp /opt/docker-demo/config.yml /docker/gatus/config.yml
       when: ansible_os_family == 'Debian'
       
     - name: Run Docker demo
