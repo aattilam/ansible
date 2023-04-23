@@ -13,6 +13,9 @@
 
     - name: Install Docker
       shell: curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+      
+    - name: Run docker rootless setuptool
+      shell: dockerd-rootless-setuptool.sh install
 
     - name: Restart Docker service
       service:
