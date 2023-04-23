@@ -9,6 +9,7 @@
           - curl
           - git
           - htop
+          - docker-compose
         state: present
 
     - name: Install Docker
