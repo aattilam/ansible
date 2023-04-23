@@ -3,7 +3,7 @@
   become: true
 
   tasks:
-    - name: Install curl and git
+    - name: Install curl, git, htop and docker-compose
       apt:
         name:
           - curl
