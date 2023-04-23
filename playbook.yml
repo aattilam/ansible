@@ -3,50 +3,41 @@
   become: true
 
   tasks:
-    - name: Check DNS availability
-      ping:
-        dest: google.com
-      register: ping_result
-      ignore_errors: true
-
     - name: Install curl and git
       apt:
         name:
           - curl
           - git
         state: present
-      when: ping_result|success
 
     - name: Install Docker
       shell: curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
-      when: ping_result|success
 
     - name: Restart Docker service
       service:
         name: docker
         state: restarted
-      when: ping_result|success
 
     - name: Clone Docker demo repository
       git:
         repo: https://github.com/aattilam/docker-demo
         dest: /opt/docker-demo
-      when: ping_result|success and ansible_os_family == 'Debian'
+      when: ansible_os_family == 'Debian'
 
     - name: Create /docker/gatus directory
       file:
         path: /docker/gatus
         state: directory
-      when: ping_result|success and ansible_os_family == 'Debian'
+      when: ansible_os_family == 'Debian'
 
     - name: Copy config.yml to /docker/gatus
       copy:
         src: /opt/docker-demo/config.yml
         dest: /docker/gatus/config.yml
-      when: ping_result|success and ansible_os_family == 'Debian'
+      when: ansible_os_family == 'Debian'
       
     - name: Run Docker demo
       command: docker-compose up -d
       args:
         chdir: /opt/docker-demo
-      when: ping_result|success and ansible_os_family == 'Debian'
+      when: ansible_os_family == 'Debian'
