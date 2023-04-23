@@ -25,16 +25,6 @@
         repo: https://github.com/aattilam/docker-demo
         dest: /opt/docker-demo
       when: ansible_os_family == 'Debian'
-
-    - name: Create /docker/gatus directory
-      file:
-        path: /docker/gatus
-        state: directory
-      when: ansible_os_family == 'Debian'
-
-    - name: Copy config.yml to /docker/gatus
-      shell: cp /opt/docker-demo/config.yml /docker/gatus/config.yml
-      when: ansible_os_family == 'Debian'
       
     - name: Create containers
       command: docker-compose up -d
