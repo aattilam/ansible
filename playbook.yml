@@ -1,6 +1,8 @@
 - name:  Install docker and run basic containers
   hosts: all
-  become: true
+  become: yes
+  become_user: root
+  become_method: sudo
 
   tasks:
     - name: Install curl and git
